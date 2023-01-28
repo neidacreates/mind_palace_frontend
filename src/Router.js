@@ -1,14 +1,14 @@
 import { Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
-import Workspace from "./Pages/Workspace";
+import WorkspacePage from "./Pages/WorkspacePage";
 import Dashboard from "./Pages/Dashboard";
 import ErrorPage from "./Pages/ErrorPage";
 
 export const routes = [
   {
     element: <Home />,
-    path: "/home",
+    path: "/",
   },
   {
     element: <Login />,
@@ -16,10 +16,10 @@ export const routes = [
   },
   {
     element: <Dashboard />,
-    path: "/dashboard",
+    path: "/workspaces",
     children: [
       {
-        element: <Workspace />,
+        element: <WorkspacePage />,
         path: ":workspaceName",
       },
     ],
