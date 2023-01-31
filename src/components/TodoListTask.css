@@ -1,0 +1,11 @@
+.task_incomplete {
+    text-decoration: none;
+}
+
+.task_complete {
+    text-decoration:line-through;
+}
+
+.taskList {
+    list-style: none;
+}

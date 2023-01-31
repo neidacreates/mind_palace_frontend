@@ -1,7 +1,7 @@
-import mockWorkspaces from "../testData";
-import { Link } from "react-router-dom";
+// import mockWorkspaces from "../testData";
+import { Link, Outlet } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = ({ workspaceData }) => {
   return (
     <div>
       <h1>Welcome to Mind Palace Workspaces Dashboard!</h1>
@@ -12,7 +12,7 @@ const Dashboard = () => {
 
       <div className="container">
         <div className="row">
-          {mockWorkspaces.map((workspace) => (
+          {workspaceData.map((workspace) => (
             <div className="col-3" key={workspace.id}>
               <div className="card">
                 <img
@@ -32,6 +32,7 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
+      {/* <Outlet context={mockWorkspaces} /> */}
     </div>
   );
 };

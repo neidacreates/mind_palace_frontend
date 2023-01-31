@@ -1,5 +1,5 @@
 // Mock Workspace List
-const mockWorkspaces = [
+export const mockWorkspaces = [
   {
     id: 1,
     name: "Forest",
@@ -26,4 +26,19 @@ const mockWorkspaces = [
   },
 ];
 
-export default mockWorkspaces;
+export const mockTasks = [
+  {
+    id: 1,
+    taskName: "sweep",
+    isComplete: false,
+    workspace: 1,
+  },
+  {
+    id: 2,
+    taskName: "vacuum",
+    isComplete: false,
+    workspace: 1,
+  },
+];
+
+// export default mockWorkspaces;

@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
-import WorkspacePage from "./Pages/WorkspacePage";
+import Workspace from "./components/Workspace";
 import Dashboard from "./Pages/Dashboard";
 import ErrorPage from "./Pages/ErrorPage";
+import { mockWorkspaces, mockTasks } from "./testData";
 
 export const routes = [
   {
@@ -15,14 +16,22 @@ export const routes = [
     path: "/login",
   },
   {
-    element: <Dashboard />,
+    element: <Login />,
+    path: "/signup",
+  },
+  {
+    element: <Dashboard workspaceData={mockWorkspaces} />,
     path: "/workspaces",
-    children: [
-      {
-        element: <WorkspacePage />,
-        path: ":workspaceName",
-      },
-    ],
+    // children: [
+    //   {
+    //     element: <Workspace />,
+    //     path: ":workspaceName",
+    //   },
+    // ],
+  },
+  {
+    element: <Workspace workspaceData={mockWorkspaces} taskData={mockTasks} />,
+    path: "workspaces/:workspaceName",
   },
   {
     element: <Navigate to="/error" replace />,

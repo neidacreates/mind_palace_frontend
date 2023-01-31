@@ -1,0 +1,12 @@
+#task_incomplete {
+    text-decoration: none;
+}
+
+#task_complete {
+    text-decoration:line-through;
+    color: red;
+}
+
+#taskList {
+    list-style: none;
+}
