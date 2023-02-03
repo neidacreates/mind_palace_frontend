@@ -12,7 +12,7 @@ export const mockWorkspaces = [
     id: 2,
     name: "Beach",
     timer_default: 1500,
-    user: 1,
+    user: 2,
     background_default:
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
   },

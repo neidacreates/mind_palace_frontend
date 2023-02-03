@@ -1,10 +1,13 @@
 // import mockWorkspaces from "../testData";
-import { Link, Outlet } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Dashboard = ({ workspaceData }) => {
+  const location = useLocation();
+  const current_user = location.state.user_id;
+  console.log("current user id ", current_user);
   return (
     <div>
-      <h1>Welcome to Mind Palace Workspaces Dashboard!</h1>
+      <h1>Welcome to Mind Palace Workspaces Dashboard, User {current_user}!</h1>
 
       <h2>
         Choose one of your existing workspaces from below or make a new one.

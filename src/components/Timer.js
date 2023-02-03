@@ -1,3 +1,7 @@
+// TODO:
+// settings modal window
+// switching timer to break (probably just make a button to switch which also changes the secondsLeft state and change the heading)
+
 import React, { useEffect, useState } from "react";
 
 const Timer = ({ seconds }) => {
@@ -54,6 +58,7 @@ const Timer = ({ seconds }) => {
   // stuff that gets rendered
   return (
     <div className="container">
+      <span>Timer!</span>
       <button className="btn btn-primary" onClick={start}>
         Start
       </button>
