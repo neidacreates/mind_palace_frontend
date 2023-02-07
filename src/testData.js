@@ -29,13 +29,25 @@ export const mockWorkspaces = [
 export const mockTasks = [
   {
     id: 1,
-    taskName: "sweep",
+    taskName: "design project wireframe",
     isComplete: false,
     workspace: 1,
   },
   {
     id: 2,
-    taskName: "vacuum",
+    taskName: "problem set #2",
+    isComplete: false,
+    workspace: 1,
+  },
+  {
+    id: 3,
+    taskName: "read chapter 1",
+    isComplete: false,
+    workspace: 1,
+  },
+  {
+    id: 4,
+    taskName: "make weekly schedule",
     isComplete: false,
     workspace: 1,
   },

@@ -18,9 +18,7 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
-        const current_user = response.data;
-        console.log(current_user);
-        navigate("/workspaces", { state: { user_id: current_user } });
+        navigate("/workspaces", { state: [response.data] });
       })
       .catch((error) => <section>{error.response.data.message}</section>);
   };

@@ -15,7 +15,8 @@ const TodoList = ({ tasks, strikethroughToggle }) => {
   });
 
   return (
-    <div className="container">
+    <div className="container widget">
+      <h3> Todo List </h3>
       <ul className="taskList">{makeAllTasks}</ul>
     </div>
   );

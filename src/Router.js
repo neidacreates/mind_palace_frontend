@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Workspace from "./components/Workspace";
+import SampleWorkspace from "./components/SampleWorkspace";
 import Dashboard from "./Pages/Dashboard";
 import ErrorPage from "./Pages/ErrorPage";
 import { mockWorkspaces, mockTasks } from "./testData";
@@ -20,7 +21,13 @@ export const routes = [
     path: "/signup",
   },
   {
-    element: <Dashboard workspaceData={mockWorkspaces} />,
+    element: (
+      <SampleWorkspace workspaceData={mockWorkspaces} taskData={mockTasks} />
+    ),
+    path: "/sample",
+  },
+  {
+    element: <Dashboard />,
     path: "/workspaces",
     // children: [
     //   {
@@ -30,7 +37,7 @@ export const routes = [
     // ],
   },
   {
-    element: <Workspace workspaceData={mockWorkspaces} taskData={mockTasks} />,
+    element: <Workspace />,
     path: "workspaces/:workspaceName",
   },
   {

@@ -57,18 +57,22 @@ const Timer = ({ seconds }) => {
   };
   // stuff that gets rendered
   return (
-    <div className="container">
-      <span>Timer!</span>
-      <button className="btn btn-primary" onClick={start}>
-        Start
-      </button>
-      <button className="btn btn-primary" onClick={pauseTimer}>
-        Pause
-      </button>
-      <button className="btn btn-primary" onClick={clearTimer}>
-        Reset
-      </button>
-      <div>{secondsToTimeString(secondsLeft)}</div>
+    <div className="widget container timer">
+      <h3>🍅 ~ Timer ~ 🍅</h3>
+
+      <div id="timerButtons">
+        <button className="btn btn-danger" onClick={start}>
+          Start
+        </button>
+        <button className="btn btn-danger" onClick={pauseTimer}>
+          Pause
+        </button>
+        <button className="btn btn-danger" onClick={clearTimer}>
+          Reset
+        </button>
+      </div>
+
+      <div id="timerDisplay">{secondsToTimeString(secondsLeft)}</div>
     </div>
   );
 };
