@@ -29,12 +29,6 @@ export const routes = [
   {
     element: <Dashboard />,
     path: "/workspaces",
-    // children: [
-    //   {
-    //     element: <Workspace />,
-    //     path: ":workspaceName",
-    //   },
-    // ],
   },
   {
     element: <Workspace />,
