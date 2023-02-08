@@ -1,5 +1,4 @@
-// import mockWorkspaces from "../testData";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { wait } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -9,13 +8,14 @@ import getVideoId from "../utils/YouTubeId";
 const Dashboard = () => {
   const apiAddress = process.env.REACT_APP_BACKEND_URL;
   const location = useLocation();
-  const navigate = useNavigate();
   const userId = location.state[0].id;
   const [currentWorkspaces, setCurrentWorkspaces] = useState(
     location.state[0].workspaces
   );
 
+  // fetching the updated workspaces from backend everytime we reload the page
   useEffect(() => {
+    console.log("inside use effect");
     let mounted = true;
     axios.get(`${apiAddress}/users/${userId}/workspaces`).then((response) => {
       if (mounted) {
@@ -26,9 +26,9 @@ const Dashboard = () => {
   }, []);
 
   // testing
-  console.log("1. location is ", location);
-  console.log("2. current workspace data is ", currentWorkspaces);
-  console.log("3. current user id is ", userId);
+  // console.log("1. location is ", location);
+  // console.log("2. current workspace data is ", currentWorkspaces);
+  // console.log("3. current user id is ", userId);
 
   // modal window
   const [showModal, setShowModal] = useState(false);
@@ -61,6 +61,7 @@ const Dashboard = () => {
       .catch((error) => <section>{error}</section>);
   };
 
+  // getting video thumbnail from youtube api
   const getYoutubeThumbnail = (backgroundVideo, workspaceName) => {
     console.log("inside getyoutubethumbnail function");
     // await wait(1000);
@@ -126,6 +127,7 @@ const Dashboard = () => {
       alert("Oops! That's not a valid YouTube URL, please try again.");
     }
   };
+
   // rendered content
   return (
     <div>
