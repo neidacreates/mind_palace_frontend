@@ -5,18 +5,27 @@
 }
 
 
-#timerButtons .btn {
+#timerButtons button {
     margin: 0.5rem;
+    background: #a06be3;
+    border: 2px solid #a06be3;
+}
+
+#timerButtons button:hover  {
+    margin: 0.5rem;
+    background: #170e1f;
+    border: 2px solid #a06be3;
 }
 
 /* display styles */
 .widget {
-    background-color: white;
-    color: black;
-    padding: 5%;
-    border: 10px red solid;
+    background-color: #170e1f;
+    color: #a06be3;
+    padding: 1rem;
+    border: 10px #332946 solid;
     text-align: center;
-    /* box-shadow: 10px 4px darkorchid; */
+    max-width:fit-content;
+    border-radius: 1rem;
 }
 
 /* video background */

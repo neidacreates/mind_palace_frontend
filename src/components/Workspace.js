@@ -15,6 +15,7 @@ import TodoList from "./TodoList";
 import YouTube from "react-youtube";
 import "./Workspace.css";
 import { Button } from "react-bootstrap";
+import Draggable from "react-draggable";
 
 const Workspace = () => {
   let { state } = useLocation();
@@ -72,14 +73,18 @@ const Workspace = () => {
       <h3>Workspace: {workspace.name}</h3>
 
       <Timer className="widget" seconds={workspace.timer_length} />
+
       <TodoList
         className="widget"
         tasks={tasks}
         strikethroughToggle={strikethroughToggle}
       />
-      <Button onClick={toggleMuteVideo}>
-        {videoMuted ? "Unmute" : "Mute"}
-      </Button>
+      <Draggable>
+        <Button onClick={toggleMuteVideo}>
+          {videoMuted ? "Unmute" : "Mute"}
+        </Button>
+      </Draggable>
+
       <div className="video-background">
         <div className="video-foreground">
           <YouTube

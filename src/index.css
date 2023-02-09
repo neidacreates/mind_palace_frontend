@@ -1,6 +1,35 @@
 .navBar {
-  background: black;
+  background: #a06be3;
   color: white;
   padding: 1rem;
 }
 
+.navBar button {
+  background: #170e1f;
+  border: 2px solid #a06be3;
+}
+
+.navBar button:hover {
+  background: #332946;
+  border: 2px solid #170e1f;
+}
+
+.card {
+  margin-bottom: 1rem;
+  background-color: #332946;
+  border-color: #a06be3;
+}
+
+body {
+  background-color: #170e1f;
+  color: #a06be3;
+}
+
+a {
+  text-decoration: none;
+  color: #a06be3;
+}
+
+a:hover {
+  font-style: italic;
+}

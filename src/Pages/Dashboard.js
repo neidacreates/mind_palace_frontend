@@ -1,3 +1,9 @@
+// TODO:
+// add delete button to each card
+// add edit button to each card
+// style things
+// add nav bar with log out button
+
 import { Link, useLocation } from "react-router-dom";
 import { wait } from "@testing-library/user-event/dist/utils";
 import axios from "axios";

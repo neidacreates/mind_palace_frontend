@@ -8,15 +8,14 @@ const HomePage = () => {
       <Container fluid className="navBar">
         <Row>
           <Col>Mind Palace App</Col>
-          <Col md="auto">
-            <Button variant="light" onClick={() => navigate("/sample")}>
-              Explore
-            </Button>
+          <Col sm={1}>
+            <Button onClick={() => navigate("/sample")}>Explore</Button>
           </Col>
-          <Col sm={2}>
-            <Button variant="light" onClick={() => navigate("/login")}>
-              Login
-            </Button>
+          <Col sm={1}>
+            <Button onClick={() => navigate("/signup")}>Sign Up</Button>
+          </Col>
+          <Col sm={1}>
+            <Button onClick={() => navigate("/login")}>Login</Button>
           </Col>
         </Row>
       </Container>

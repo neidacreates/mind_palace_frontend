@@ -3,6 +3,9 @@
 // switching timer to break (probably just make a button to switch which also changes the secondsLeft state and change the heading)
 
 import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import axios from "axios";
+import Draggable from "react-draggable";
 
 const Timer = ({ seconds }) => {
   const [secondsLeft, setSecondsLeft] = useState(seconds);
@@ -55,25 +58,92 @@ const Timer = ({ seconds }) => {
     const result = new Date(milliSeconds).toISOString().slice(14, 19);
     return result;
   };
+
+  // modal window controls
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+
+  const handleTimerSubmit = (event) => {
+    event.preventDefault();
+    axios.patch();
+    console.log(event.target.timerMinutes.value);
+    console.log(event.target.breakMinutes.value);
+  };
+
   // stuff that gets rendered
   return (
-    <div className="widget container timer">
-      <h3>🍅 ~ Timer ~ 🍅</h3>
+    <Draggable>
+      <div className="widget container timer">
+        <h3>🍅 ~ Timer ~ 🍅</h3>
 
-      <div id="timerButtons">
-        <button className="btn btn-danger" onClick={start}>
-          Start
-        </button>
-        <button className="btn btn-danger" onClick={pauseTimer}>
-          Pause
-        </button>
-        <button className="btn btn-danger" onClick={clearTimer}>
-          Reset
-        </button>
+        <div id="timerButtons">
+          <Button onClick={start}>Start</Button>
+          <Button onClick={pauseTimer}>
+            {timerPaused ? "Resume" : "Pause"}
+          </Button>
+          <Button onClick={clearTimer}>Reset</Button>
+          <Button onClick={handleShow}>Settings</Button>
+        </div>
+
+        <div id="timerDisplay">{secondsToTimeString(secondsLeft)}</div>
+
+        <Modal show={showModal} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Timer Settings</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form
+              className="container"
+              onSubmit={handleTimerSubmit}
+              id="TimerForm"
+            >
+              <div className="mb-3">
+                <label htmlFor="timerMinutes" className="form-label">
+                  Timer (Minutes)
+                </label>
+                <input
+                  type="number"
+                  name="timerMinutes"
+                  className="form-control"
+                  id="timerMinutes"
+                  defaultValue="25"
+                  min="1"
+                  aria-describedby="timerHelp"
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="breakMinutes" className="form-label">
+                  Break (Minutes)
+                </label>
+                <input
+                  type="number"
+                  name="breakMinutes"
+                  className="form-control"
+                  id="breakMinutes"
+                  defaultValue="5"
+                  min="1"
+                  aria-describedby="breakHelp"
+                />
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button
+              variant="primary"
+              type="submit"
+              form="TimerForm"
+              onClick={handleClose}
+            >
+              Create
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
-
-      <div id="timerDisplay">{secondsToTimeString(secondsLeft)}</div>
-    </div>
+    </Draggable>
   );
 };
 
