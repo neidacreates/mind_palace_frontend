@@ -4,8 +4,9 @@
 
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import axios from "axios";
+// import axios from "axios";
 import Draggable from "react-draggable";
+// import { handleClose, handleShow } from "../utils/ModalFunc";
 
 const Timer = ({ seconds }) => {
   const [secondsLeft, setSecondsLeft] = useState(seconds);
@@ -66,7 +67,7 @@ const Timer = ({ seconds }) => {
 
   const handleTimerSubmit = (event) => {
     event.preventDefault();
-    axios.patch();
+    // axios.patch();
     console.log(event.target.timerMinutes.value);
     console.log(event.target.breakMinutes.value);
   };
@@ -75,7 +76,7 @@ const Timer = ({ seconds }) => {
   return (
     <Draggable>
       <div className="widget container timer">
-        <h3>🍅 ~ Timer ~ 🍅</h3>
+        <h3>✨ Timer ✨</h3>
 
         <div id="timerButtons">
           <Button onClick={start}>Start</Button>

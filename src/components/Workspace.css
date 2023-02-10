@@ -4,14 +4,24 @@
     font-size: 2.5rem;
 }
 
+#muteBtn {
+    margin: 0.5rem;
+    background: #a06be3;
+    border: 2px solid #a06be3;
+}
+#muteBtn:hover {
+    margin: 0.5rem;
+    background: #170e1f;
+    border: 2px solid #a06be3;
+}
 
-#timerButtons button {
+.widget button {
     margin: 0.5rem;
     background: #a06be3;
     border: 2px solid #a06be3;
 }
 
-#timerButtons button:hover  {
+.widget button:hover  {
     margin: 0.5rem;
     background: #170e1f;
     border: 2px solid #a06be3;

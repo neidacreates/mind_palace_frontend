@@ -1,29 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./TodoListTask.css";
+import { Button } from "react-bootstrap";
 
-const Task = ({ id, taskName, isComplete, strikethroughToggle }) => {
-  const toggleCompleteClass = !isComplete ? "task_incomplete" : "task_complete";
+const Task = ({ id, title, is_complete, strikethroughToggle, deleteTask }) => {
+  const toggleCompleteClass = !is_complete
+    ? "task_incomplete"
+    : "task_complete";
   return (
-    <li>
+    <li className={toggleCompleteClass}>
       <span
-        className={toggleCompleteClass}
         onClick={() => {
           strikethroughToggle(id);
         }}
       >
-        {taskName}
+        {title}
       </span>
-      <button className="btn btn-primary">X</button>
+      <Button onClick={() => deleteTask(id)}>X</Button>
     </li>
   );
 };
 
 Task.propTypes = {
   id: PropTypes.number.isRequired,
-  taskName: PropTypes.string.isRequired,
-  isComplete: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  is_complete: PropTypes.bool.isRequired,
   strikethroughToggle: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default Task;

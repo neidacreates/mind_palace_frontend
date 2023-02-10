@@ -1,11 +1,27 @@
+.taskList {
+    list-style-position: outside;
+    text-align: left;
+}
+
 .task_incomplete {
     text-decoration: none;
+    list-style: "◻️  ";
 }
 
 .task_complete {
     text-decoration:line-through;
+    list-style: "✅  ";
 }
 
-.taskList {
-    list-style: none;
+/* .task_incomplete span:hover, .task_complete span:hover {
+    font-style: italic;
+} */
+
+.task_incomplete:hover span, .task_complete:hover span {
+    font-style: italic;
 }
+
+.task_incomplete:hover, .task_complete:hover{
+    cursor: pointer;
+}
+

@@ -10,6 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import getVideoId from "../utils/YouTubeId";
+// import { handleClose, handleShow } from "../utils/ModalFunc";
 
 const Dashboard = () => {
   const apiAddress = process.env.REACT_APP_BACKEND_URL;
@@ -134,7 +135,9 @@ const Dashboard = () => {
     }
   };
 
-  // rendered content
+  // ==========================================================
+  // Rendered Content
+  // ==========================================================
   return (
     <div>
       <h1>Welcome to your workspace dashboard!</h1>
@@ -170,7 +173,7 @@ const Dashboard = () => {
             <div className="card">
               <div className="card-body">
                 <Button onClick={handleShow}>
-                  <h5 className="card-title"> Create a New Workspace</h5>
+                  <h5 className="card-title"> + New Workspace</h5>
                 </Button>
               </div>
             </div>
@@ -211,7 +214,7 @@ const Dashboard = () => {
                 aria-describedby="videoHelpBlock"
               />
               <div id="videoHelpBlock" className="form-text">
-                Please use a YouTube video link only.
+                Please use a YouTube video link.
               </div>
             </div>
           </form>
