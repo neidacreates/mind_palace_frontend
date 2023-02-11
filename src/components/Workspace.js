@@ -26,6 +26,22 @@ const Workspace = () => {
   const workspace = workspaces.find(
     (workspace) => workspace.name.toLowerCase() === workspaceName
   );
+  // ==========================================================
+  // Timer
+  // ==========================================================
+  const [timerSeconds, setTimerSeconds] = useState(workspace.timer_length);
+  const saveTimerSettings = (event) => {
+    event.preventDefault();
+    console.log(event.target.timerMinutes.value);
+    console.log(event.target.breakMinutes.value);
+    axios
+      .patch(`${apiAddress}/workspaces/${workspace.id}`, {
+        timer_length: event.target.timerMinutes.value * 60,
+        break_length: event.target.breakMinutes.value * 60,
+      })
+      .then((response) => setTimerSeconds(response.data.timer_length))
+      .catch((error) => console.error(error));
+  };
 
   // ==========================================================
   // Task List
@@ -132,7 +148,11 @@ const Workspace = () => {
         </Button>
       </Draggable>
 
-      <Timer className="widget" seconds={workspace.timer_length} />
+      <Timer
+        className="widget"
+        timerSeconds={timerSeconds}
+        saveTimerSettings={saveTimerSettings}
+      />
 
       <TodoList
         className="widget"

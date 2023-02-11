@@ -3,13 +3,14 @@
 // switching timer to break (probably just make a button to switch which also changes the secondsLeft state and change the heading)
 
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Button, Modal } from "react-bootstrap";
 // import axios from "axios";
 import Draggable from "react-draggable";
 // import { handleClose, handleShow } from "../utils/ModalFunc";
 
-const Timer = ({ seconds }) => {
-  const [secondsLeft, setSecondsLeft] = useState(seconds);
+const Timer = ({ timerSeconds, saveTimerSettings }) => {
+  const [secondsLeft, setSecondsLeft] = useState(timerSeconds);
   const [timerPaused, setTimerPaused] = useState(false);
   const [timer, setTimer] = useState();
 
@@ -24,7 +25,8 @@ const Timer = ({ seconds }) => {
 
   const clearTimer = () => {
     clearInterval(timer);
-    setSecondsLeft(seconds);
+    setSecondsLeft(timerSeconds);
+    setTimerPaused(false);
   };
 
   const start = () => {
@@ -53,6 +55,11 @@ const Timer = ({ seconds }) => {
     return () => clearInterval(timer);
   }, [timer]);
 
+  useEffect(() => {
+    clearInterval(timer);
+    setSecondsLeft(timerSeconds);
+  }, [timerSeconds]);
+
   // DONE: function to convert seconds into a string
   const secondsToTimeString = (totalSeconds) => {
     const milliSeconds = totalSeconds * 1000;
@@ -65,12 +72,12 @@ const Timer = ({ seconds }) => {
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  const handleTimerSubmit = (event) => {
-    event.preventDefault();
-    // axios.patch();
-    console.log(event.target.timerMinutes.value);
-    console.log(event.target.breakMinutes.value);
-  };
+  // const handleTimerSubmit = (event) => {
+  //   event.preventDefault();
+  //   // axios.patch();
+  //   console.log(event.target.timerMinutes.value);
+  //   console.log(event.target.breakMinutes.value);
+  // };
 
   // stuff that gets rendered
   return (
@@ -96,12 +103,12 @@ const Timer = ({ seconds }) => {
           <Modal.Body>
             <form
               className="container"
-              onSubmit={handleTimerSubmit}
+              onSubmit={saveTimerSettings}
               id="TimerForm"
             >
               <div className="mb-3">
                 <label htmlFor="timerMinutes" className="form-label">
-                  Timer (Minutes)
+                  Timer Minutes
                 </label>
                 <input
                   type="number"
@@ -109,13 +116,13 @@ const Timer = ({ seconds }) => {
                   className="form-control"
                   id="timerMinutes"
                   defaultValue="25"
-                  min="1"
+                  min="0"
                   aria-describedby="timerHelp"
                 />
               </div>
               <div className="mb-3">
                 <label htmlFor="breakMinutes" className="form-label">
-                  Break (Minutes)
+                  Break Minutes
                 </label>
                 <input
                   type="number"
@@ -123,7 +130,7 @@ const Timer = ({ seconds }) => {
                   className="form-control"
                   id="breakMinutes"
                   defaultValue="5"
-                  min="1"
+                  min="0"
                   aria-describedby="breakHelp"
                 />
               </div>
@@ -146,6 +153,11 @@ const Timer = ({ seconds }) => {
       </div>
     </Draggable>
   );
+};
+
+Timer.propTypes = {
+  timerSeconds: PropTypes.number.isRequired,
+  saveTimerSettings: PropTypes.func.isRequired,
 };
 
 export default Timer;
