@@ -10,7 +10,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import getVideoId from "../utils/YouTubeId";
-// import { handleClose, handleShow } from "../utils/ModalFunc";
 
 const Dashboard = () => {
   const apiAddress = process.env.REACT_APP_BACKEND_URL;
@@ -55,7 +54,9 @@ const Dashboard = () => {
   };
   const [showEditModal, setShowEditModal] = useState(false);
 
+  // ==========================================================
   // posting new workspace
+  // ==========================================================
   const postNewWorkspace = async (
     userId,
     workspaceName,
@@ -81,7 +82,9 @@ const Dashboard = () => {
       .catch((error) => <section>{error}</section>);
   };
 
+  // ==========================================================
   // getting video thumbnail from youtube api
+  // ==========================================================
   const getYoutubeThumbnail = (backgroundVideo, workspaceName) => {
     console.log("inside getyoutubethumbnail function");
     // await wait(1000);
@@ -104,7 +107,10 @@ const Dashboard = () => {
       });
   };
 
-  // modal window form submission
+  // ==========================================================
+  // new workspace modal window form submission
+  // ==========================================================
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -119,8 +125,20 @@ const Dashboard = () => {
     }
   };
 
+  // ==========================================================
+  // edit workspace modal window form submission
+  // ==========================================================
+
   const handleEditSubmit = (event) => {
     event.preventDefault();
+    const workspaceName = event.target.elements.workspaceName.value;
+    const backgroundLink = event.target.elements.backgroundLink.value;
+    const backgroundVideo = getVideoId(backgroundLink);
+    if (backgroundVideo) {
+      getYoutubeThumbnail(backgroundVideo, workspaceName);
+    } else {
+      alert("Oops! That's not a valid YouTube URL, please try again.");
+    }
   };
 
   // ==========================================================
