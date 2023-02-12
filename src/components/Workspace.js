@@ -30,6 +30,7 @@ const Workspace = () => {
   // Timer
   // ==========================================================
   const [timerSeconds, setTimerSeconds] = useState(workspace.timer_length);
+  const [breakSeconds, setBreakSeconds] = useState(workspace.break_length);
   const saveTimerSettings = (event) => {
     event.preventDefault();
     console.log(event.target.timerMinutes.value);
@@ -39,7 +40,10 @@ const Workspace = () => {
         timer_length: event.target.timerMinutes.value * 60,
         break_length: event.target.breakMinutes.value * 60,
       })
-      .then((response) => setTimerSeconds(response.data.timer_length))
+      .then((response) => {
+        setTimerSeconds(response.data.timer_length);
+        setBreakSeconds(response.data.break_length);
+      })
       .catch((error) => console.error(error));
   };
 
@@ -151,6 +155,7 @@ const Workspace = () => {
       <Timer
         className="widget"
         timerSeconds={timerSeconds}
+        breakSeconds={breakSeconds}
         saveTimerSettings={saveTimerSettings}
       />
 

@@ -4,7 +4,9 @@
 
 import { wait } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import "./Forms.css";
 
 const Login = () => {
   const apiAddress = process.env.REACT_APP_BACKEND_URL;
@@ -20,7 +22,7 @@ const Login = () => {
       .then((response) => {
         navigate("/workspaces", { state: [response.data] });
       })
-      .catch((error) => <section>{error.response.data.message}</section>);
+      .catch((error) => console.error(error));
   };
 
   const onLoginSubmit = (event) => {
@@ -55,14 +57,15 @@ const Login = () => {
           id="InputPassword"
           aria-describedby="passwordHelpBlock"
         />
-        <div id="passwordHelpBlock" className="form-text">
-          Your password must be 8-20 characters long, contain letters and
-          numbers, and must not contain spaces, special characters, or emoji.
-        </div>
       </div>
       <button type="submit" className="btn btn-primary">
         Login
       </button>
+      <div>
+        <span>
+          Don't have an account? <Link to="/signup">Sign up here.</Link>
+        </span>
+      </div>
     </form>
   );
 };

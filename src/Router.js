@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 import Workspace from "./components/Workspace";
 import SampleWorkspace from "./components/SampleWorkspace";
 import Dashboard from "./Pages/Dashboard";
@@ -17,7 +18,7 @@ export const routes = [
     path: "/login",
   },
   {
-    element: <Login />,
+    element: <Signup />,
     path: "/signup",
   },
   {

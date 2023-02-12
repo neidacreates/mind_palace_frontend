@@ -39,8 +39,21 @@ const Dashboard = () => {
 
   // modal window
   const [showModal, setShowModal] = useState(false);
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
+  const handleClose = (modalType) => {
+    if (modalType === "edits") {
+      setShowEditModal(false);
+    } else {
+      setShowModal(false);
+    }
+  };
+  const handleShow = (modalType) => {
+    if (modalType === "edits") {
+      setShowEditModal(true);
+    } else {
+      setShowModal(true);
+    }
+  };
+  const [showEditModal, setShowEditModal] = useState(false);
 
   // posting new workspace
   const postNewWorkspace = async (
@@ -93,46 +106,21 @@ const Dashboard = () => {
 
   // modal window form submission
   const handleSubmit = (event) => {
-    // extract name and video link from the form
-    // get video id from the link
-    // if there was a valid id, call youtube api to get the thumbnail
-    // save the thumbnail link in the appropriate variable
-    // save the workspace to the database
-    // update the dashboard by changing the user state to reflect the new data
-    console.log("inside handleSubmit");
     event.preventDefault();
-
-    // testing
-    console.log("event is ", event.target);
-    console.log(
-      "event elements name: ",
-      event.target.elements.workspaceName.value
-    );
-    // testing
 
     const workspaceName = event.target.elements.workspaceName.value;
     const backgroundLink = event.target.elements.backgroundLink.value;
     const backgroundVideo = getVideoId(backgroundLink);
 
     if (backgroundVideo) {
-      console.log("inside if backgroundVideo");
-      const backgroundThumbnail = getYoutubeThumbnail(
-        backgroundVideo,
-        workspaceName
-      );
-      console.log("1. background thumbnail is ", backgroundThumbnail);
-
-      // postNewWorkspace(
-      //   userId,
-      //   workspaceName,
-      //   backgroundThumbnail,
-      //   backgroundVideo
-      // );
-
-      console.log("2. background thumbnail is ", backgroundThumbnail);
+      getYoutubeThumbnail(backgroundVideo, workspaceName);
     } else {
       alert("Oops! That's not a valid YouTube URL, please try again.");
     }
+  };
+
+  const handleEditSubmit = (event) => {
+    event.preventDefault();
   };
 
   // ==========================================================
@@ -165,6 +153,7 @@ const Dashboard = () => {
                       {workspace.name}
                     </Link>
                   </h5>
+                  <Button onClick={() => handleShow("edits")}>Edit</Button>
                 </div>
               </div>
             </div>
@@ -172,7 +161,7 @@ const Dashboard = () => {
           <div className="col-3">
             <div className="card">
               <div className="card-body">
-                <Button onClick={handleShow}>
+                <Button onClick={() => handleShow("new")}>
                   <h5 className="card-title"> + New Workspace</h5>
                 </Button>
               </div>
@@ -180,7 +169,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal show={showModal} onHide={() => handleClose("new")}>
         <Modal.Header closeButton>
           <Modal.Title>New Workspace</Modal.Title>
         </Modal.Header>
@@ -220,16 +209,73 @@ const Dashboard = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => handleClose("new")}>
             Close
           </Button>
           <Button
             variant="primary"
             type="submit"
             form="newWorkspaceForm"
-            onClick={handleClose}
+            onClick={() => handleClose("new")}
           >
             Create
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showEditModal} onHide={() => handleClose("edits")}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Workspace</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form
+            className="container"
+            onSubmit={handleEditSubmit}
+            id="editWorkspaceForm"
+          >
+            <div className="mb-3">
+              <label htmlFor="InputWorkspaceName" className="form-label">
+                Workspace Name
+              </label>
+              <input
+                type="text"
+                name="workspaceName"
+                className="form-control"
+                id="InputWorkspaceName"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="BackgroundLink" className="form-label">
+                Background Video Link
+              </label>
+              <input
+                type="text"
+                name="backgroundLink"
+                className="form-control"
+                id="BackgroundLink"
+                aria-describedby="videoHelpBlock"
+              />
+              <div id="videoHelpBlock" className="form-text">
+                Please use a YouTube video link.
+              </div>
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="primary"
+            type="submit"
+            form="editWorkspaceForm"
+            onClick={() => handleClose("edits")}
+          >
+            Save Changes
+          </Button>
+          <Button variant="danger" onClick={() => handleClose("edits")}>
+            Delete Workspace
+          </Button>
+          <Button variant="secondary" onClick={() => handleClose("edits")}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

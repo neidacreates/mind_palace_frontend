@@ -1,0 +1,23 @@
+.form-text {
+    color: black;
+}
+
+
+
+.formBtn {
+    background: #170e1f!important;
+    border: 2px solid #170e1f !important;
+    color: white !important;
+}
+
+.formBtn:hover {
+    background: #D2ABDB !important;
+    border: 2px solid black !important;
+    color: black !important;
+}
+
+.userForm {
+    background-color: #D2ABDB;
+    padding: 2rem;
+    color: black;
+}
