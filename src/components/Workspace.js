@@ -211,6 +211,7 @@ const Workspace = () => {
           {videoMuted ? "Unmute Background" : "Mute Background"}
         </Button>
         <Button onClick={handleShow}>Settings</Button>
+        <Button onClick={() => navigate(-1)}>Back to Workspaces</Button>
       </section>
 
       <Timer
