@@ -5,11 +5,11 @@
 // add nav bar with log out button
 
 import { Link, useLocation } from "react-router-dom";
-import { wait } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import getVideoId from "../utils/YouTubeId";
+import getYoutubeThumbnail from "../utils/youtubeThumbnail";
 
 const Dashboard = () => {
   const apiAddress = process.env.REACT_APP_BACKEND_URL;
@@ -38,6 +38,8 @@ const Dashboard = () => {
 
   // modal window
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+
   const handleClose = (modalType) => {
     if (modalType === "edits") {
       setShowEditModal(false);
@@ -52,60 +54,64 @@ const Dashboard = () => {
       setShowModal(true);
     }
   };
-  const [showEditModal, setShowEditModal] = useState(false);
 
   // ==========================================================
   // posting new workspace
   // ==========================================================
-  const postNewWorkspace = async (
-    userId,
-    workspaceName,
-    backgroundThumbnail,
-    backgroundVideo
-  ) => {
-    console.log("inside postNewWorkspace");
-    console.log("postnewworkspace thumbnail is ", backgroundThumbnail);
-    await wait(5000);
+  const postNewWorkspace = async (userId, workspaceName, backgroundVideo) => {
+    try {
+      const backgroundThumbnail = await getYoutubeThumbnail(backgroundVideo);
 
-    axios
-      .post(`${apiAddress}/users/${userId}/workspaces`, {
-        name: workspaceName,
-        user: userId,
-        background_thumbnail: backgroundThumbnail,
-        background_video: backgroundVideo,
-      })
-      .then((response) => {
-        console.log(response.data);
-        setCurrentWorkspaces([...currentWorkspaces, response.data]);
-        console.log("workspaces after postnewworkspace ", currentWorkspaces);
-      })
-      .catch((error) => <section>{error}</section>);
+      const postResponse = await axios.post(
+        `${apiAddress}/users/${userId}/workspaces`,
+        {
+          name: workspaceName,
+          user: userId,
+          background_thumbnail: backgroundThumbnail,
+          background_video: backgroundVideo,
+        }
+      );
+      setCurrentWorkspaces([...currentWorkspaces, postResponse.data]);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  // ==========================================================
+  // editing a workspace
+  // ==========================================================
+  // const editWorkspace = async (userId, workspaceName, backgroundVideo) => {
+  //   try {
+  //     const backgroundThumbnail = await getYoutubeThumbnail(backgroundVideo);
+
+  //     const patchResponse = await axios.patch(
+  //       `${apiAddress}/users/${userId}/workspaces/${workspaceName}`,
+  //       {
+  //         name: workspaceName,
+  //         user: userId,
+  //         background_thumbnail: backgroundThumbnail,
+  //         background_video: backgroundVideo,
+  //       }
+  //     );
+  //     setCurrentWorkspaces([...currentWorkspaces, patchResponse.data]);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   // ==========================================================
   // getting video thumbnail from youtube api
   // ==========================================================
-  const getYoutubeThumbnail = (backgroundVideo, workspaceName) => {
-    console.log("inside getyoutubethumbnail function");
-    // await wait(1000);
-    axios
-      .get("https://www.googleapis.com/youtube/v3/videos", {
-        params: {
-          id: backgroundVideo,
-          part: "snippet",
-          key: process.env.REACT_APP_YOUTUBE_KEY,
-        },
-      })
-      .then((response) => {
-        console.log("youtube api response is ", response);
-        console.log(
-          "youtube api thumbnail is ",
-          response.data.items[0].snippet.thumbnails.high.url
-        );
-        const thumbnail = response.data.items[0].snippet.thumbnails.high.url;
-        postNewWorkspace(userId, workspaceName, thumbnail, backgroundVideo);
-      });
-  };
+
+  // .then((response) => {
+  //   console.log("youtube api response is ", response);
+  //   console.log(
+  //     "youtube api thumbnail is ",
+  //     response.data.items[0].snippet.thumbnails.high.url
+  //   );
+  // return response.data.items[0].snippet.thumbnails.high.url;
+  // postNewWorkspace(userId, workspaceName, thumbnail, backgroundVideo);
+  // });
 
   // ==========================================================
   // new workspace modal window form submission
@@ -119,7 +125,7 @@ const Dashboard = () => {
     const backgroundVideo = getVideoId(backgroundLink);
 
     if (backgroundVideo) {
-      getYoutubeThumbnail(backgroundVideo, workspaceName);
+      postNewWorkspace(userId, workspaceName, backgroundVideo);
     } else {
       alert("Oops! That's not a valid YouTube URL, please try again.");
     }
@@ -128,18 +134,6 @@ const Dashboard = () => {
   // ==========================================================
   // edit workspace modal window form submission
   // ==========================================================
-
-  const handleEditSubmit = (event) => {
-    event.preventDefault();
-    const workspaceName = event.target.elements.workspaceName.value;
-    const backgroundLink = event.target.elements.backgroundLink.value;
-    const backgroundVideo = getVideoId(backgroundLink);
-    if (backgroundVideo) {
-      getYoutubeThumbnail(backgroundVideo, workspaceName);
-    } else {
-      alert("Oops! That's not a valid YouTube URL, please try again.");
-    }
-  };
 
   // ==========================================================
   // Rendered Content
@@ -156,7 +150,7 @@ const Dashboard = () => {
         <div className="row">
           {currentWorkspaces.map((workspace) => (
             <div className="col-3" key={workspace.id}>
-              <div className="card">
+              <div className="card" id={workspace.id}>
                 <img
                   src={workspace.background_thumbnail}
                   className="card-img-top"
@@ -171,7 +165,6 @@ const Dashboard = () => {
                       {workspace.name}
                     </Link>
                   </h5>
-                  <Button onClick={() => handleShow("edits")}>Edit</Button>
                 </div>
               </div>
             </div>
@@ -241,7 +234,7 @@ const Dashboard = () => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={showEditModal} onHide={() => handleClose("edits")}>
+      {/* <Modal show={showEditModal} onHide={() => handleClose("edits")}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Workspace</Modal.Title>
         </Modal.Header>
@@ -296,7 +289,7 @@ const Dashboard = () => {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
