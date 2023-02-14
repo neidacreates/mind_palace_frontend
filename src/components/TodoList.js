@@ -41,7 +41,7 @@ const TodoList = ({
 
   return (
     <Draggable>
-      <div className="container widget">
+      <div className="container widget lightMode">
         <h3> Task List </h3>
         <ul className="taskList">{makeAllTasks}</ul>
         <Button onClick={handleShow}>Add Task</Button>

@@ -22,7 +22,7 @@
 
 body {
   background-color: #170e1f;
-  color: #a06be3;
+  color: #f8edeb;
 }
 
 a {
@@ -32,5 +32,19 @@ a {
 
 a:hover {
   font-style: italic;
+}
+
+.modal-content {
+  background-color:#f8edeb;
+  color: #170e1f;
+  border-color: black;
+}
+
+.modal-header {
+  border-color: black;
+}
+
+.modal-footer {
+  border-color: black;
 }
 

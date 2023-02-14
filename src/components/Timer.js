@@ -117,7 +117,7 @@ const Timer = ({ timerSeconds, breakSeconds, saveTimerSettings }) => {
   // stuff that gets rendered
   return (
     <Draggable>
-      <div className="widget container timer">
+      <div className="widget container timer lightMode">
         <h3>{focusMode ? "✨ Focus ✨" : "🍿 Break 🍿"}</h3>
 
         <div id="timerButtons">
@@ -134,7 +134,7 @@ const Timer = ({ timerSeconds, breakSeconds, saveTimerSettings }) => {
           Switch to {focusMode ? " Break Mode" : " Focus Mode"}
         </Button>
 
-        <Modal show={showModal} onHide={handleClose}>
+        <Modal show={showModal} onHide={handleClose} className="modalPopup">
           <Modal.Header closeButton>
             <Modal.Title>Timer Settings</Modal.Title>
           </Modal.Header>

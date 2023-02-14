@@ -5,20 +5,24 @@
 // import Settings from "./Settings";
 // import Music from "./Music";
 // import { useParams, useOutletContext } from "react-router-dom";
+
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
+import axios from "axios";
+import useCollapse from "react-collapsed";
 import Timer from "./Timer";
 import TodoList from "./TodoList";
+import Quote from "./Quote";
 import YouTube from "react-youtube";
 import "./Workspace.css";
 import { Button, Modal } from "react-bootstrap";
-import Draggable from "react-draggable";
-import axios from "axios";
+
 import getVideoId from "../utils/YouTubeId";
 import getYoutubeThumbnail from "../utils/youtubeThumbnail";
 
 const Workspace = () => {
   const navigate = useNavigate();
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
   const apiAddress = process.env.REACT_APP_BACKEND_URL;
   let { state } = useLocation();
   // name of current workspace is extracted from url parameter
@@ -32,6 +36,7 @@ const Workspace = () => {
   const workspace = workspaces.find(
     (workspace) => workspace.name.toLowerCase() === workspaceName
   );
+
   // ==========================================================
   // Setting Up Current Workspace
   // ==========================================================
@@ -205,29 +210,38 @@ const Workspace = () => {
   // ==========================================================
   return (
     <div>
-      <section className="widget">
-        <h1>Current Workspace: {currentWorkspaceName}</h1>
-        <Button id="muteBtn" onClick={toggleMuteVideo}>
-          {videoMuted ? "Unmute Background" : "Mute Background"}
-        </Button>
-        <Button onClick={handleShow}>Settings</Button>
-        <Button onClick={() => navigate(-1)}>Back to Workspaces</Button>
-      </section>
+      <div className="collapsible settings lightMode">
+        <div {...getToggleProps()}>
+          <h1>Current Workspace: {currentWorkspaceName}</h1>
+          <Button>
+            {isExpanded ? "Collapse Settings" : "Expand Settings"}
+          </Button>
+        </div>
+        <div {...getCollapseProps()}>
+          <div>
+            <Button id="muteBtn" onClick={toggleMuteVideo}>
+              {videoMuted ? "Unmute Background" : "Mute Background"}
+            </Button>
+            <Button onClick={handleShow}>Edit Workspace</Button>
+            <Button onClick={() => navigate(-1)}>Back to Dashboard</Button>
+          </div>
+        </div>
+      </div>
 
       <Timer
-        className="widget"
         timerSeconds={timerSeconds}
         breakSeconds={breakSeconds}
         saveTimerSettings={saveTimerSettings}
       />
 
       <TodoList
-        className="widget"
         tasks={tasks}
         strikethroughToggle={strikethroughToggle}
         handleTaskSubmit={handleTaskSubmit}
         deleteTask={deleteTask}
       />
+
+      <Quote></Quote>
 
       <div className="video-background">
         <div className="video-foreground">
