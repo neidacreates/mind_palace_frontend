@@ -24,14 +24,19 @@ const Quote = () => {
   useEffect(() => {
     getQuote();
   }, []);
+  const hideQuote = () => {
+    const quote = document.getElementById("quote");
+    quote.classList.add("hidden");
+  };
   return (
     <Draggable>
-      <div className="widget container lightMode">
+      <div className="widget container lightMode" id="quote">
         <blockquote>
           {currentQuote}
           <footer> - {currentAuthor}</footer>
         </blockquote>
         <Button onClick={getQuote}>Change Quote</Button>
+        <Button onClick={hideQuote}>Hide Quote</Button>
       </div>
     </Draggable>
   );

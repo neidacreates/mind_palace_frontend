@@ -1,11 +1,7 @@
-// TODO: handle errors when user isn't found (display popup or something?)
-// TODO: where to save the user id? state? browser storage?
-// TODO: get the page to move to /workspaces when the login is successful
-
 import { wait } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import "./Forms.css";
 
 const Login = () => {
@@ -33,40 +29,62 @@ const Login = () => {
   };
 
   return (
-    <form className="container" onSubmit={onLoginSubmit}>
-      <div className="mb-3">
-        <label htmlFor="InputEmail1" className="form-label">
-          Email Address
-        </label>
-        <input
-          type="email"
-          name="email"
-          className="form-control"
-          id="InputEmail1"
-          aria-describedby="emailHelp"
-        />
+    <>
+      <Container fluid className="navBar">
+        <Row>
+          <Col>
+            <img className="img-fluid logo-image" src="/logo.png"></img>
+          </Col>
+          <Col sm={2}>
+            <Button id="signupB" onClick={() => navigate("/signup")}>
+              Sign Up
+            </Button>
+          </Col>
+          <Col sm={1}>
+            <Button id="loginB" onClick={() => navigate("/login")}>
+              Login
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+      <div className="container form-holder">
+        <h1>Login</h1>
+        <form className="container userForm" onSubmit={onLoginSubmit}>
+          <div className="mb-3">
+            <label htmlFor="InputEmail1" className="form-label">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              id="InputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="InputPassword" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="InputPassword"
+              aria-describedby="passwordHelpBlock"
+            />
+          </div>
+          <Button type="submit" className="formBtn">
+            Login
+          </Button>
+          <div>
+            <span>
+              Don't have an account? <Link to="/signup">Sign up here.</Link>
+            </span>
+          </div>
+        </form>
       </div>
-      <div className="mb-3">
-        <label htmlFor="InputPassword" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          className="form-control"
-          id="InputPassword"
-          aria-describedby="passwordHelpBlock"
-        />
-      </div>
-      <button type="submit" className="btn btn-primary">
-        Login
-      </button>
-      <div>
-        <span>
-          Don't have an account? <Link to="/signup">Sign up here.</Link>
-        </span>
-      </div>
-    </form>
+    </>
   );
 };
 

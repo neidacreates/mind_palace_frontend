@@ -4,8 +4,8 @@
 
 import { wait } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { useNavigate, Link } from "react-router-dom";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import "./Forms.css";
 
 const Signup = () => {
@@ -49,56 +49,83 @@ const Signup = () => {
   };
 
   return (
-    <form className="container userForm" onSubmit={onSignupSubmit}>
-      <div className="mb-3">
-        <label htmlFor="InputEmail1" className="form-label">
-          Email Address
-        </label>
-        <input
-          type="email"
-          name="email"
-          className="form-control"
-          id="InputEmail1"
-          aria-describedby="emailHelp"
-        />
-      </div>
+    <>
+      <Container fluid className="navBar">
+        <Row>
+          <Col>
+            <img className="img-fluid logo-image" src="/logo.png"></img>
+          </Col>
+          <Col sm={2}>
+            <Button id="signupB" onClick={() => navigate("/signup")}>
+              Sign Up
+            </Button>
+          </Col>
+          <Col sm={1}>
+            <Button id="loginB" onClick={() => navigate("/login")}>
+              Login
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+      <div className="container form-holder">
+        <h1>Sign Up Form</h1>
+        <form className="container userForm" onSubmit={onSignupSubmit}>
+          <div className="mb-3">
+            <label htmlFor="InputEmail1" className="form-label">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              id="InputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
 
-      <div className="mb-3">
-        <label htmlFor="InputUsername" className="form-label">
-          Username
-        </label>
-        <input
-          type="text"
-          name="username"
-          className="form-control"
-          id="InputUsername"
-          aria-describedby="usernameHelpBlock"
-        />
-        <div id="usernameHelpBlock" className="form-text">
-          Up to 10 characters long.
-        </div>
-      </div>
+          <div className="mb-3">
+            <label htmlFor="InputUsername" className="form-label">
+              Username
+            </label>
+            <input
+              type="text"
+              name="username"
+              className="form-control"
+              id="InputUsername"
+              aria-describedby="usernameHelpBlock"
+            />
+            <div id="usernameHelpBlock" className="form-text">
+              Up to 10 characters long.
+            </div>
+          </div>
 
-      <div className="mb-3">
-        <label htmlFor="InputPassword" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          className="form-control"
-          id="InputPassword"
-          aria-describedby="passwordHelpBlock"
-        />
-        <div id="passwordHelpBlock" className="form-text">
-          Up to 10 characters long.
-        </div>
-      </div>
+          <div className="mb-3">
+            <label htmlFor="InputPassword" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="InputPassword"
+              aria-describedby="passwordHelpBlock"
+            />
+            <div id="passwordHelpBlock" className="form-text">
+              Up to 10 characters long.
+            </div>
+          </div>
 
-      <Button className="formBtn" type="submit">
-        Sign Up
-      </Button>
-    </form>
+          <Button className="formBtn" type="submit">
+            Sign Up
+          </Button>
+          <div>
+            <span>
+              Already have an account? <Link to="/login">Log in here.</Link>
+            </span>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

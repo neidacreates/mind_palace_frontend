@@ -1,19 +1,12 @@
-// TODO:
-// settings modal window
-// switching timer to break (probably just make a button to switch which also changes the secondsLeft state and change the heading)
-
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { Button, Modal } from "react-bootstrap";
-// import axios from "axios";
 import Draggable from "react-draggable";
-// import { handleClose, handleShow } from "../utils/ModalFunc";
 
 const Timer = ({ timerSeconds, breakSeconds, saveTimerSettings }) => {
   const [secondsLeft, setSecondsLeft] = useState(timerSeconds);
   const [timerPaused, setTimerPaused] = useState(false);
   const [timer, setTimer] = useState();
-  // in focus mode by default
   const [focusMode, setFocusMode] = useState(true);
   const soundRef = useRef();
 
@@ -60,16 +53,10 @@ const Timer = ({ timerSeconds, breakSeconds, saveTimerSettings }) => {
         playSound();
         clearInterval(timer);
       }
-
-      // if paused or not
-      // if paused return seconds wihtout updating
-      // if not paused keep going -1
-      // pause button also checks condition if already paused
-      // restart setInterval after pausing
     }, 1000);
     setTimer(timer);
   };
-  // whenever secondsLeft and timer re-renders/changes, useEffect will check if the seconds are 0 and clearInterval accordingly
+
   useEffect(() => {
     if (secondsLeft === 0 || timerPaused) {
       clearInterval(timer);
@@ -95,30 +82,20 @@ const Timer = ({ timerSeconds, breakSeconds, saveTimerSettings }) => {
     }
   }, [timerSeconds, breakSeconds]);
 
-  // DONE: function to convert seconds into a string
   const secondsToTimeString = (totalSeconds) => {
     const milliSeconds = totalSeconds * 1000;
     const result = new Date(milliSeconds).toISOString().slice(14, 19);
     return result;
   };
 
-  // modal window controls
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  // const handleTimerSubmit = (event) => {
-  //   event.preventDefault();
-  //   // axios.patch();
-  //   console.log(event.target.timerMinutes.value);
-  //   console.log(event.target.breakMinutes.value);
-  // };
-
-  // stuff that gets rendered
   return (
     <Draggable>
       <div className="widget container timer lightMode">
-        <h3>{focusMode ? "✨ Focus ✨" : "🍿 Break 🍿"}</h3>
+        <h3>{focusMode ? "🌱 Focus 🌱" : "🍿 Break 🍿"}</h3>
 
         <div id="timerButtons">
           <Button onClick={start}>Start</Button>
@@ -191,7 +168,6 @@ const Timer = ({ timerSeconds, breakSeconds, saveTimerSettings }) => {
         <audio src="/twinkle_alarm.mp3" type="audio/mpeg" ref={soundRef}>
           Audio
         </audio>
-        {/* <Button onClick={playSound}>play sound</Button> */}
       </div>
     </Draggable>
   );
@@ -199,6 +175,7 @@ const Timer = ({ timerSeconds, breakSeconds, saveTimerSettings }) => {
 
 Timer.propTypes = {
   timerSeconds: PropTypes.number.isRequired,
+  breakSeconds: PropTypes.number.isRequired,
   saveTimerSettings: PropTypes.func.isRequired,
 };
 

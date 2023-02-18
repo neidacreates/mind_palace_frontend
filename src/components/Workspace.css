@@ -1,4 +1,18 @@
 
+
+#expand-settings {
+    font-size: small;
+    margin: 0.25rem;
+    background-color: #a06be3;
+    border: 2px solid #a06be3;
+    padding:0%
+}
+
+#expand-settings:hover {
+    background-color: black;
+}
+
+
 /* timer */
 #timerDisplay {
     font-size: 2.5rem;
@@ -46,25 +60,35 @@
     border-radius: 1rem;
 }
 
-.settings child {
-    display:inline;
+.hidden {
+    display:none;
 }
 
 .lightMode {
     background-color: #f8edeb;
     color: #0d1b2a;
-    border: 10px #fcd5ce solid;
-}
-.collapsible .content {
-    padding: 6px;
-    background-color: red;
-}
-.collapsible .header {
-    background-color: green;
-    padding: 6px;
-    cursor: pointer;
+    border: 10px #ff7096 solid;
 }
 
+.settings h1 {
+    font-size: large;
+}
+
+.settings {
+    border: 5px #ff7096 solid;
+}
+
+.collapse-hidden button {
+    background-color:#a06be3;
+    border:#a06be3 solid 2px;
+    margin: 0.5rem;
+}
+
+.collapse-hidden button:hover {
+    background-color:black;
+    border:#a06be3 solid 2px;
+    margin: 0.5rem;
+}
 /* video background */
 
 .video-background {

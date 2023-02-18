@@ -1,22 +1,13 @@
-// TODO:
-
-// import Timer from "./Timer";
-// import Clock from "./Clock";
-// import Settings from "./Settings";
-// import Music from "./Music";
-// import { useParams, useOutletContext } from "react-router-dom";
-
-import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
-import axios from "axios";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import useCollapse from "react-collapsed";
+import { Button, Modal } from "react-bootstrap";
+import axios from "axios";
 import Timer from "./Timer";
 import TodoList from "./TodoList";
 import Quote from "./Quote";
 import YouTube from "react-youtube";
 import "./Workspace.css";
-import { Button, Modal } from "react-bootstrap";
-
 import getVideoId from "../utils/YouTubeId";
 import getYoutubeThumbnail from "../utils/youtubeThumbnail";
 
@@ -205,6 +196,11 @@ const Workspace = () => {
     axios.delete(`${apiAddress}/workspaces/${currentWorkspaceId}`);
     navigate(-1);
   };
+
+  const showQuote = () => {
+    const quote = document.getElementById("quote");
+    quote.classList.remove("hidden");
+  };
   // ==========================================================
   // Rendered Content
   // ==========================================================
@@ -213,16 +209,17 @@ const Workspace = () => {
       <div className="collapsible settings lightMode">
         <div {...getToggleProps()}>
           <h1>Current Workspace: {currentWorkspaceName}</h1>
-          <Button>
+          <Button id="expand-settings">
             {isExpanded ? "Collapse Settings" : "Expand Settings"}
           </Button>
         </div>
-        <div {...getCollapseProps()}>
+        <div className="collapse-hidden" {...getCollapseProps()}>
           <div>
             <Button id="muteBtn" onClick={toggleMuteVideo}>
               {videoMuted ? "Unmute Background" : "Mute Background"}
             </Button>
             <Button onClick={handleShow}>Edit Workspace</Button>
+            <Button onClick={showQuote}>Show Quote</Button>
             <Button onClick={() => navigate(-1)}>Back to Dashboard</Button>
           </div>
         </div>

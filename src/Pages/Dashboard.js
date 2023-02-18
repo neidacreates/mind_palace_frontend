@@ -1,9 +1,3 @@
-// TODO:
-// add delete button to each card
-// add edit button to each card
-// style things
-// add nav bar with log out button
-
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -15,6 +9,7 @@ const Dashboard = () => {
   const apiAddress = process.env.REACT_APP_BACKEND_URL;
   const location = useLocation();
   const userId = location.state[0].id;
+  const userName = location.state[0].username;
   const [currentWorkspaces, setCurrentWorkspaces] = useState(
     location.state[0].workspaces
   );
@@ -132,15 +127,11 @@ const Dashboard = () => {
   };
 
   // ==========================================================
-  // edit workspace modal window form submission
-  // ==========================================================
-
-  // ==========================================================
   // Rendered Content
   // ==========================================================
   return (
-    <div>
-      <h1>Welcome to your workspace dashboard!</h1>
+    <div className="dashboard-container">
+      <h1>Welcome to your workspace dashboard, {userName}!</h1>
 
       <h2>
         Choose one of your existing workspaces from below or make a new one.
@@ -172,7 +163,7 @@ const Dashboard = () => {
           <div className="col-3">
             <div className="card">
               <div className="card-body">
-                <Button onClick={() => handleShow("new")}>
+                <Button className="dash-btn" onClick={() => handleShow("new")}>
                   <h5 className="card-title"> + New Workspace</h5>
                 </Button>
               </div>
@@ -224,7 +215,7 @@ const Dashboard = () => {
             Close
           </Button>
           <Button
-            variant="primary"
+            className="modal-btn"
             type="submit"
             form="newWorkspaceForm"
             onClick={() => handleClose("new")}

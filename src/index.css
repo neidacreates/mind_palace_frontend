@@ -1,12 +1,44 @@
+.logo-image {
+  width: 20rem;
+}
+
+.main-home {
+  text-align: center;
+}
+
+.dashboard-container {
+  text-align: center;
+}
+
+.dash-btn {
+  background-color:#D2ABDB;
+  color: #170e1f;
+  border: 2px solid #170e1f;
+}
+
+.dash-btn:hover {
+  background-color:#170e1f;
+  color: #D2ABDB;
+  border: 2px solid #170e1f;
+}
+
 .navBar {
-  background: #a06be3;
-  color: white;
-  padding: 1rem;
+  background: rgb(78,47,145);
+  color: #332946;
+  padding: 0.5rem;
 }
 
 .navBar button {
   background: #170e1f;
-  border: 2px solid #a06be3;
+  border: 2px solid #D2ABDB;
+  padding: 0.75rem;
+  /* margin-left: 2rem; */
+  margin-top: 1.75rem;
+  /* margin-right:0.5rem; */
+}
+
+#signupB {
+  margin-left: 5rem;
 }
 
 .navBar button:hover {
@@ -27,7 +59,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #a06be3;
+  color: #f8edeb;
 }
 
 a:hover {
@@ -37,14 +69,26 @@ a:hover {
 .modal-content {
   background-color:#f8edeb;
   color: #170e1f;
-  border-color: black;
+  border-color: #332946;
 }
 
 .modal-header {
-  border-color: black;
+  border-color: #332946;
 }
 
 .modal-footer {
-  border-color: black;
+  border-color: #332946;
+}
+
+.modal-btn {
+  background-color:#332946;
+  color:#f8edeb;
+  border-color: #332946;
+}
+
+.modal-btn:hover {
+  background-color:#f8edeb;
+  color:#332946;
+  border-color: #332946;
 }
 

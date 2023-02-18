@@ -2,7 +2,10 @@
     color: black;
 }
 
-
+.form-holder h1 {
+    text-align: center;
+    margin: 1rem;
+}
 
 .formBtn {
     background: #170e1f!important;
