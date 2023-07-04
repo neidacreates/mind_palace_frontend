@@ -10,7 +10,12 @@ const HomePage = () => {
           <Col>
             <img className="img-fluid logo-image" src="/logo.png"></img>
           </Col>
-          <Col sm={2}>
+          {/* <Col sm={1}>
+            <Button id="sampleB" onClick={() => navigate("/sample")}>
+              Try It!
+            </Button>
+          </Col> */}
+          <Col sm={1}>
             <Button id="signupB" onClick={() => navigate("/signup")}>
               Sign Up
             </Button>
