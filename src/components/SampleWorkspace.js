@@ -204,8 +204,8 @@ const SampleWorkspace = () => {
                 X to delete them from the list.
               </li>
               <li>
-                You can hide the quote by pressing the Hide Quote button on it,
-                and make it reappear with the Show Quote button below.
+                Hide the quote by pressing the Hide Quote button on it, and make
+                it reappear with the Show Quote button below.
               </li>
               <li>
                 To pause the timer, press Pause and then Resume to resume it. Do
