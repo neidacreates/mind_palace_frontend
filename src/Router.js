@@ -6,7 +6,6 @@ import Workspace from "./components/Workspace";
 import SampleWorkspace from "./components/SampleWorkspace";
 import Dashboard from "./Pages/Dashboard";
 import ErrorPage from "./Pages/ErrorPage";
-import { mockWorkspaces, mockTasks } from "./testData";
 
 export const routes = [
   {
@@ -22,9 +21,7 @@ export const routes = [
     path: "/signup",
   },
   {
-    element: (
-      <SampleWorkspace workspaceData={mockWorkspaces} taskData={mockTasks} />
-    ),
+    element: <SampleWorkspace />,
     path: "/sample",
   },
   {

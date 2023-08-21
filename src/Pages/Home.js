@@ -8,14 +8,18 @@ const HomePage = () => {
       <Container fluid className="navBar">
         <Row>
           <Col>
-            <img className="img-fluid logo-image" src="/logo.png"></img>
+            <img
+              className="img-fluid logo-image"
+              src="/logo.png"
+              alt="Mind Palace Logo"
+            ></img>
           </Col>
-          {/* <Col sm={1}>
+          <Col sm={1}>
             <Button id="sampleB" onClick={() => navigate("/sample")}>
               Try It!
             </Button>
-          </Col> */}
-          <Col sm={1}>
+          </Col>
+          {/* <Col sm={1}>
             <Button id="signupB" onClick={() => navigate("/signup")}>
               Sign Up
             </Button>
@@ -24,7 +28,7 @@ const HomePage = () => {
             <Button id="loginB" onClick={() => navigate("/login")}>
               Login
             </Button>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
       <section className="container main-home">
