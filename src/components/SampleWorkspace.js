@@ -74,7 +74,7 @@ const SampleWorkspace = () => {
 
   // tasks is a list of objects
   const [tasks, setTasks] = useState(mockWorkspaceData.tasks);
-  console.log("1. tasks are ", tasks);
+  // console.log("1. tasks are ", tasks);
 
   // when updating completeness
   const strikethroughToggle = (id) => {
@@ -89,7 +89,7 @@ const SampleWorkspace = () => {
       }
     });
     setTasks(newTasks);
-    console.log("2. tasks are ", tasks);
+    // console.log("2. tasks are ", tasks);
     console.log(!tasks.find((task) => task.id === id).is_complete);
   };
 

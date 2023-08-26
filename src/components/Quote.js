@@ -4,8 +4,10 @@ import Draggable from "react-draggable";
 import { Button } from "react-bootstrap";
 
 const Quote = () => {
-  const [currentQuote, setCurrentQuote] = useState("hello");
-  const [currentAuthor, setCurrentAuthor] = useState("Author");
+  const [currentQuote, setCurrentQuote] = useState(
+    "Whoever is happy will make others happy too."
+  );
+  const [currentAuthor, setCurrentAuthor] = useState("Anne Frank");
   const getQuote = async () => {
     const quoteResponse = await axios.get(
       "https://api.api-ninjas.com/v1/quotes",
