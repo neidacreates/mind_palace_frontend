@@ -1,3 +1,18 @@
+.sample-button {
+  color: white;
+  background-color: #a06be3;
+  border-color: #a06be3;
+  margin-bottom: 2%;
+}
+.sample-button:hover {
+  background-color: white;
+  color: black;
+  border-color: #a06be3;
+}
+#home-list {
+  list-style: none;
+}
+
 .logo-image {
   width: 20rem;
 }

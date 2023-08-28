@@ -270,8 +270,11 @@ const SampleWorkspace = () => {
                 className="form-control"
                 id="InputWorkspaceName"
                 defaultValue={workspaceName}
-                aria-describedby="emailHelp"
+                aria-describedby="nameHelpBlock"
               />
+              <div id="nameHelpBlock" className="form-text">
+                No spaces please, one word names only.
+              </div>
             </div>
             <div className="mb-3">
               <label htmlFor="BackgroundLink" className="form-label">
