@@ -46,7 +46,7 @@ const HomePage = () => {
         </section>
         <section>
           <iframe
-            src="https://drive.google.com/file/d/1kttXv5ti2v1qTu6c7_gz4Is1wprXvQ72/preview"
+            src="/after.mov"
             width="800"
             height="480"
             allow="autoplay"
