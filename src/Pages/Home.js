@@ -44,14 +44,6 @@ const HomePage = () => {
             Try Sample Dashboard
           </Button>
         </section>
-        <section>
-          <iframe
-            src="/after.mov"
-            width="800"
-            height="480"
-            allow="autoplay"
-          ></iframe>
-        </section>
       </section>
       <footer>
         By <a href="https://neidacreates.com">NeidaCreates</a>
