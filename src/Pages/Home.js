@@ -36,14 +36,14 @@ const HomePage = () => {
             one place?
           </li>
         </ul>
-        <video
-          src="/after.mov"
-          width="800"
-          height="600"
-          autoplay
-          muted
-          controls
-        ></video>
+        // <video
+        //   src="/after.mov"
+        //   width="800"
+        //   height="600"
+        //   autoplay
+        //   muted
+        //   controls
+        // ></video>
         <p></p>
       </section>
     </div>
