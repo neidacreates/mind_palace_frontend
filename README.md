@@ -17,7 +17,7 @@ Sample Deployed at: <https://mind-palace-sample.vercel.app/>
 A deployment of the app with all features is in progress. In the meantime you can test the widget and video background functions on the sample dashboard [here](https://mind-palace-sample.vercel.app/).
 
 ## For Developers:
-This wed app was made using React and Django.
+This web app was made using React and Django.
 
 
 
